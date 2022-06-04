@@ -7,7 +7,7 @@ import UserContext from '../../contexts/UserContext';
 
 import { Link } from 'react-router-dom';
 
-import { ThreeDots } from 'react-loader-spinner';
+import Loading from '../../shared/Loading';
 //import loading
 export default function CardsPlan() {
   const { objLoginResponse } = useContext(UserContext);
@@ -36,9 +36,7 @@ export default function CardsPlan() {
   return (
     <>
       {objCardsPlanList === null ? (
-        <ContainerLoading>
-          <ThreeDots color="#FF4791" height={50} width={50} />
-        </ContainerLoading>
+        <Loading />
       ) : (
         objCardsPlanList.map((cardPlan, index) => (
           <CardPlan
@@ -90,11 +88,4 @@ const CardPlanClass = styled.button`
   align-items: center;
   padding: 16px;
   margin-bottom: 10px;
-`;
-const ContainerLoading = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 400px;
 `;

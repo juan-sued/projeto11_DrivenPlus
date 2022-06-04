@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import UserContext from '../../contexts/UserContext.js';
 //import context
-export default function InputsBuyer() {
+export default function InputsBuyer({ toggleConfirmCard, keyToggleCardView }) {
   const { objLoginResponse } = useContext(UserContext);
   const { setObjBuyPlanResponse } = useContext(UserContext);
   const URL = 'https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions';
@@ -28,6 +28,7 @@ export default function InputsBuyer() {
 
   function buyPlan(event) {
     event.preventDefault();
+
     // headerToken
     const config = {
       headers: {

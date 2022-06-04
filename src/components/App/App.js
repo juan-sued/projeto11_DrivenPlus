@@ -16,7 +16,12 @@ import Plan_Page from '../Plan_Page/Plan_Page';
 
 export default function App() {
   const [objLoginResponse, setObjLoginResponse] = useState({});
+  //guarda a resposta do login
+
+  const [objDescriptionPlan, setObjDescriptionPlan] = useState({});
+
   const [objBuyPlanResponse, setObjBuyPlanResponse] = useState({});
+  //guarda a resposta de compra
 
   return (
     <UserContext.Provider
@@ -24,7 +29,9 @@ export default function App() {
         objLoginResponse,
         setObjLoginResponse,
         objBuyPlanResponse,
-        setObjBuyPlanResponse
+        setObjBuyPlanResponse,
+        objDescriptionPlan,
+        setObjDescriptionPlan
       }}
     >
       <BrowserRouter>

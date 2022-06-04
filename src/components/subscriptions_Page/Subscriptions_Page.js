@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import Main from '../../shared/Main';
 import CardsPlan from './CardPlan';
 
+import UserContext from '../../contexts/UserContext';
+import { useContext } from 'react';
 export default function Subscriptions_Page() {
+  const { objDescriptionCard } = useContext(UserContext);
   return (
     <Main>
       <H1>Escolha seu Plano</H1>
