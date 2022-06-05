@@ -34,8 +34,9 @@ export default function Plan_Page() {
           <img src={objDescriptionPlan.image} alt="" />
           <h1>{objDescriptionPlan.name}</h1>
         </Container>
-
-        <DescriptionPlan />
+        <ContainerPerks>
+          <DescriptionPlan />
+        </ContainerPerks>
         <InputsBuyer
           objDescriptionPlan={objDescriptionPlan}
           toggleConfirmCard={toggleConfirmCard}
@@ -49,6 +50,10 @@ export default function Plan_Page() {
     </>
   );
 }
+
+const ContainerPerks = styled.div`
+  width: 299px;
+`;
 
 const Container = styled.div`
   display: flex;

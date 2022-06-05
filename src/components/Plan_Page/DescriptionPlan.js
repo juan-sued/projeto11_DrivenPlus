@@ -66,7 +66,7 @@ const Container = styled.div`
   width: 90%;
   margin-top: 12px;
   color: white;
-  padding: 0 22px 0 22px;
+  padding: 0 22px 0 0px;
   margin-bottom: 10px;
   p {
     margin-top: 4px;
