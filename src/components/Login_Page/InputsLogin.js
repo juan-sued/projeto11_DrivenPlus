@@ -40,7 +40,11 @@ export default function InputsLogin() {
     promise.then(promise => {
       setObjLoginResponse(promise.data);
 
-      navigate('../subscriptions', { replace: true });
+      if (promise.data.membership) {
+        navigate('../home', { replace: true });
+      } else {
+        navigate('../subscriptions', { replace: true });
+      }
     });
     promise.catch(err => {
       setStateButton('err');

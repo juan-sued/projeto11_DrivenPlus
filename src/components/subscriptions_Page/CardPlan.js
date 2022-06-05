@@ -10,12 +10,11 @@ import { Link } from 'react-router-dom';
 import Loading from '../../shared/Loading';
 //import loading
 export default function CardsPlan() {
-  const { objLoginResponse } = useContext(UserContext);
+  const { objLoginResponse, setObjCardsPlanList, objCardsPlanList } =
+    useContext(UserContext);
 
   const URL =
     'https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships';
-
-  const [objCardsPlanList, setObjCardsPlanList] = useState(null);
 
   useEffect(() => {
     // headerToken
@@ -42,7 +41,7 @@ export default function CardsPlan() {
             key={index}
             idPlan={cardPlan.id}
             image={cardPlan.image}
-            price={cardPlan.price}
+            price={cardPlan.price.replace('.', ',')}
           />
         ))
       )}

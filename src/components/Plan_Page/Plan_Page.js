@@ -21,6 +21,7 @@ export default function Plan_Page() {
     setKeyToggleCardView(!keyToggleCardView);
   }
 
+  console.log(objDescriptionPlan);
   return (
     <>
       <Header>

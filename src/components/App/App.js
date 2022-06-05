@@ -6,7 +6,7 @@ import '../../css/style.css';
 // import css
 
 import UserContext from '../../contexts/UserContext';
-
+//import context
 import Login_Page from '../Login_Page/LoginPage';
 import Sign_up_Page from '../Sign-up_Page/RegisterPage';
 import Subscriptions_Page from '../subscriptions_Page/Subscriptions_Page';
@@ -20,9 +20,9 @@ export default function App() {
   //guarda a resposta do login
 
   const [objDescriptionPlan, setObjDescriptionPlan] = useState({});
-
-  const [objBuyPlanResponse, setObjBuyPlanResponse] = useState({});
   //guarda a resposta de compra
+  const [objBuyPlanResponse, setObjBuyPlanResponse] = useState({});
+
   //guarda os dados do cartão
   const [objDataCardCredit, setObjDataCardCredit] = useState({
     membershipId: 1,
@@ -31,6 +31,9 @@ export default function App() {
     securityNumber: 0,
     expirationDate: ''
   });
+
+  const [objCardsPlanList, setObjCardsPlanList] = useState(null);
+  const [objPerksPlan, setObjPerksPlan] = useState(null);
   return (
     <UserContext.Provider
       value={{
@@ -41,7 +44,11 @@ export default function App() {
         objDescriptionPlan,
         setObjDescriptionPlan,
         objDataCardCredit,
-        setObjDataCardCredit
+        setObjDataCardCredit,
+        objCardsPlanList,
+        setObjCardsPlanList,
+        objPerksPlan,
+        setObjPerksPlan
       }}
     >
       <BrowserRouter>

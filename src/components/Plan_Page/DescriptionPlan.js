@@ -12,9 +12,9 @@ export default function DescriptionPlan() {
 
   const { idPlan } = useParams();
 
-  const { objDescriptionPlan, setObjDescriptionPlan } = useContext(UserContext);
+  const { objDescriptionPlan, setObjDescriptionPlan, objPerksPlan, setObjPerksPlan } =
+    useContext(UserContext);
 
-  const [objPerksPlan, setObjPerksPlan] = useState(null);
   useEffect(() => {
     const URL = `https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships/${idPlan}`;
     // headerToken
@@ -54,7 +54,7 @@ export default function DescriptionPlan() {
               <img src={dolarIcon} alt="" />
               <h4>Preço:</h4>
             </div>
-            <p>R$ {objDescriptionPlan.price} cobrados mensalmente</p>
+            <p>R$ {objDescriptionPlan.price.replace('.', ',')} cobrados mensalmente</p>
           </Container>
         </>
       )}

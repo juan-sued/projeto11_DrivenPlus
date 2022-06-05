@@ -7,8 +7,13 @@ import closeIcon from '../../assets/closeIcon.svg';
 
 //import context
 export default function ModalConfirm({ keyToggleCardView, toggleConfirmCard }) {
-  const { setObjBuyPlanResponse, objDataCardCredit, objLoginResponse } =
-    useContext(UserContext);
+  const {
+    setObjBuyPlanResponse,
+    objDataCardCredit,
+    objLoginResponse,
+    objPerksPlan,
+    objDescriptionPlan
+  } = useContext(UserContext);
 
   const URL = 'https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions';
 
@@ -36,19 +41,29 @@ export default function ModalConfirm({ keyToggleCardView, toggleConfirmCard }) {
     });
   }
 
+  console.log('aqui agora', objPerksPlan);
   return (
-    <Modal onSubmit={buyPlan} display={keyToggleCardView ? 'none' : 'flex'}>
-      <div className="modalCardConfirm">
-        <p> Tem certeza que deseja assinar o plano Driven Plus (R$ 39,99)?</p>
-        <span className="container">
-          <button onClick={toggleConfirmCard} type="button">
-            Não
-          </button>
-          <button type="submit">SIM</button>
-        </span>
-      </div>
-      <img onClick={toggleConfirmCard} src={closeIcon} alt="" />
-    </Modal>
+    <>
+      {objPerksPlan === null ? (
+        ''
+      ) : (
+        <Modal onSubmit={buyPlan} display={keyToggleCardView ? 'none' : 'flex'}>
+          <div className="modalCardConfirm">
+            <p>
+              Tem certeza que deseja assinar o plano Driven Plus (R$
+              {objDescriptionPlan.price.replace('.', ',')})?
+            </p>
+            <span className="container">
+              <button onClick={toggleConfirmCard} type="button">
+                Não
+              </button>
+              <button type="submit">SIM</button>
+            </span>
+          </div>
+          <img onClick={toggleConfirmCard} src={closeIcon} alt="" />
+        </Modal>
+      )}
+    </>
   );
 }
 

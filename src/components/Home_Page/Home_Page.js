@@ -10,14 +10,25 @@ import { useNavigate } from 'react-router-dom';
 
 import Footer from '../../shared/Footer';
 import ButtonsPerks from './ButtonsPerks';
-
+import axios from 'axios';
 export default function Home_Page() {
   const navigate = useNavigate();
-  const { objBuyPlanResponse, objLoginResponse } = useContext(UserContext);
+  const { objLoginResponse } = useContext(UserContext);
+  const URL = 'https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions';
+  // headerToken
+  const config = {
+    headers: {
+      Authorization: `Bearer ${objLoginResponse.token}`
+    }
+  };
 
   function action(change) {
     if (change === 'cancelPlan') {
-      console.log('você apertou para cancelar o plano');
+      const promise = axios.delete(URL, config);
+      promise.then(response => {
+        navigate('../subscriptions', { replace: true });
+      });
+      promise.catch(err => console.log(err));
     } else if (change === 'changePlan') {
       navigate('../subscriptions', { replace: true });
       console.log('você apertou para trocar de plano');
@@ -26,13 +37,13 @@ export default function Home_Page() {
   return (
     <>
       <Header>
-        <img src={objBuyPlanResponse.membership.image} alt="" />
+        <img src={objLoginResponse.membership.image} alt="" />
 
         <img src={profileIcon} alt="" />
       </Header>
       <Main>
         <H1>Olá, {objLoginResponse.name}</H1>
-        <ButtonsPerks objBuyPlanResponse={objBuyPlanResponse} />
+        <ButtonsPerks objLoginResponse={objLoginResponse} />
       </Main>
       <Footer>
         <ButtonPink backgroundcolor={'#FF4791'} onClick={() => action('changePlan')}>
