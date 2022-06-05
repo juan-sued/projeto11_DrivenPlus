@@ -28,7 +28,6 @@ export default function CardsPlan() {
     const promise = axios.get(URL, config);
     promise.then(response => {
       setObjCardsPlanList(response.data);
-      console.log(response.data);
     });
     promise.catch(err => console.log(err));
   }, []);
@@ -53,7 +52,6 @@ export default function CardsPlan() {
 
 //renderiza um cardPlan
 function CardPlan({ idPlan, image, price }) {
-  console.log(idPlan);
   return (
     <>
       <Link

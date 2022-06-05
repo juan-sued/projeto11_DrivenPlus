@@ -6,18 +6,20 @@ import ButtonPink from '../../shared/ButtonPink';
 import styled from 'styled-components';
 import UserContext from '../../contexts/UserContext';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Footer from '../../shared/Footer';
 import ButtonsPerks from './ButtonsPerks';
 
 export default function Home_Page() {
+  const navigate = useNavigate();
   const { objBuyPlanResponse, objLoginResponse } = useContext(UserContext);
-  console.log('asdasd', objLoginResponse);
 
   function action(change) {
     if (change === 'cancelPlan') {
       console.log('você apertou para cancelar o plano');
     } else if (change === 'changePlan') {
+      navigate('../subscriptions', { replace: true });
       console.log('você apertou para trocar de plano');
     }
   }

@@ -23,13 +23,12 @@ export default function ModalConfirm({ keyToggleCardView, toggleConfirmCard }) {
         Authorization: `Bearer ${objLoginResponse.token}`
       }
     };
-    console.log('esse é o objct', objDataCardCredit);
 
     const promise = axios.post(URL, objDataCardCredit, config);
 
     promise.then(promise => {
       setObjBuyPlanResponse(promise.data);
-      console.log(promise.data);
+
       navigate('../home', { replace: true });
     });
     promise.catch(err => {

@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
-export default function ButtonPink({ backgroundcolor, children }) {
-  return <ButtonPinkClass backgroundcolor={backgroundcolor}>{children}</ButtonPinkClass>;
+export default function ButtonPink({ backgroundcolor, children, onClick }) {
+  return (
+    <ButtonPinkClass backgroundcolor={backgroundcolor} onClick={onClick}>
+      {children}
+    </ButtonPinkClass>
+  );
 }
 const ButtonPinkClass = styled.button`
   width: 303px;

@@ -14,7 +14,6 @@ import ModalConfirm from './ModalConfirm';
 
 export default function Plan_Page() {
   const { objDescriptionPlan } = useContext(UserContext);
-  console.log('esse é o obj descriptionPlan', objDescriptionPlan);
 
   const [keyToggleCardView, setKeyToggleCardView] = useState(true);
 

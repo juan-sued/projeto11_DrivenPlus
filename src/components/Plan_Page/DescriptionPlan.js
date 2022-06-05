@@ -28,7 +28,6 @@ export default function DescriptionPlan() {
     promise.then(response => {
       setObjDescriptionPlan(response.data);
       setObjPerksPlan(response.data.perks);
-      console.log(response.data);
     });
     promise.catch(err => console.log(err));
   }, []);
