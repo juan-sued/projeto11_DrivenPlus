@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
 
-export default function InputsBuyer({ toggleConfirmCard, keyToggleCardView }) {
+export default function InputsBuyer({ toggleConfirmCard, objDescriptionPlan }) {
   const [inputCardName, setInputCardName] = useState('');
   const [inputCardNumber, setInputCardNumber] = useState('');
   const [inputSecurityNumber, setInputSecurityNumber] = useState('');
@@ -19,6 +19,7 @@ export default function InputsBuyer({ toggleConfirmCard, keyToggleCardView }) {
     objDataCardCredit.cardNumber = inputCardNumber;
     objDataCardCredit.securityNumber = inputSecurityNumber;
     objDataCardCredit.expirationDate = inputExpirationDate;
+    objDataCardCredit.membershipId = objDescriptionPlan.id;
     // ===
 
     setObjDataCardCredit({ ...objDataCardCredit });
@@ -124,13 +125,6 @@ const InputClass = styled.input`
     font-weight: 400;
     font-size: 14px;
   }
-`;
-const ContainerLoading = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 20px;
 `;
 
 const BuyPlanButton = styled.button`

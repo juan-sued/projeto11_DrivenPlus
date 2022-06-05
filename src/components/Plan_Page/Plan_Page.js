@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import logoAndName from '../../assets/logoAndName.svg';
+
 import arrowBack from '../../assets/arrowBack.svg';
 
 import Main from '../../shared/Main';
 import Header from '../../shared/Header';
 import DescriptionPlan from './DescriptionPlan';
 
-import { ThreeDots } from 'react-loader-spinner';
-//import loading
 import InputsBuyer from './InputsBuyer';
 import UserContext from '../../contexts/UserContext';
 import { useContext, useState } from 'react';
@@ -16,6 +14,7 @@ import ModalConfirm from './ModalConfirm';
 
 export default function Plan_Page() {
   const { objDescriptionPlan } = useContext(UserContext);
+  console.log('esse é o obj descriptionPlan', objDescriptionPlan);
 
   const [keyToggleCardView, setKeyToggleCardView] = useState(true);
 
@@ -38,6 +37,7 @@ export default function Plan_Page() {
 
         <DescriptionPlan />
         <InputsBuyer
+          objDescriptionPlan={objDescriptionPlan}
           toggleConfirmCard={toggleConfirmCard}
           keyToggleCardView={keyToggleCardView}
         />

@@ -6,13 +6,17 @@ import UserContext from '../../contexts/UserContext.js';
 import closeIcon from '../../assets/closeIcon.svg';
 
 //import context
-export default function ModalConfirm({ keyToggleCardView, buyPlan, toggleConfirmCard }) {
-  const { objLoginResponse } = useContext(UserContext);
-  const { setObjBuyPlanResponse } = useContext(UserContext);
-  const { objDataCardCredit, setObjDataCardCredit } = useContext(UserContext);
+export default function ModalConfirm({ keyToggleCardView, toggleConfirmCard }) {
+  const { setObjBuyPlanResponse, objDataCardCredit, objLoginResponse } =
+    useContext(UserContext);
+
   const URL = 'https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions';
+
   const navigate = useNavigate();
+
+  //função de compra confirmada
   function buyPlan(event) {
+    event.preventDefault();
     // headerToken
     const config = {
       headers: {
@@ -34,7 +38,7 @@ export default function ModalConfirm({ keyToggleCardView, buyPlan, toggleConfirm
   }
 
   return (
-    <Modal onSubmit={buyPlan} display={!keyToggleCardView ? 'flex' : 'none'}>
+    <Modal onSubmit={buyPlan} display={keyToggleCardView ? 'none' : 'flex'}>
       <div className="modalCardConfirm">
         <p> Tem certeza que deseja assinar o plano Driven Plus (R$ 39,99)?</p>
         <span className="container">
