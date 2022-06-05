@@ -12,6 +12,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import InputsBuyer from './InputsBuyer';
 import UserContext from '../../contexts/UserContext';
 import { useContext, useState } from 'react';
+import ModalConfirm from './ModalConfirm';
 
 export default function Plan_Page() {
   const { objDescriptionPlan } = useContext(UserContext);
@@ -24,38 +25,30 @@ export default function Plan_Page() {
 
   return (
     <>
-      {keyToggleCardView ? (
-        <>
-          <Header>
-            <Link to="/subscriptions">
-              <img src={arrowBack} alt="" />
-            </Link>
-          </Header>
-          <Main>
-            <Container>
-              <img src={objDescriptionPlan.image} alt="" />
-              <h1>{objDescriptionPlan.name}</h1>
-            </Container>
+      <Header>
+        <Link to="/subscriptions">
+          <img src={arrowBack} alt="" />
+        </Link>
+      </Header>
+      <Main>
+        <Container>
+          <img src={objDescriptionPlan.image} alt="" />
+          <h1>{objDescriptionPlan.name}</h1>
+        </Container>
 
-            <DescriptionPlan />
-            <InputsBuyer
-              toggleConfirmCard={toggleConfirmCard}
-              keyToggleCardView={keyToggleCardView}
-            />
-          </Main>
-        </>
-      ) : (
-        <CardConfirm />
-      )}
+        <DescriptionPlan />
+        <InputsBuyer
+          toggleConfirmCard={toggleConfirmCard}
+          keyToggleCardView={keyToggleCardView}
+        />
+      </Main>
+      <ModalConfirm
+        keyToggleCardView={keyToggleCardView}
+        toggleConfirmCard={toggleConfirmCard}
+      />
     </>
   );
 }
-
-const CardConfirm = styled.div`
-  height: 100%;
-  width: 100%;
-  background-color: red;
-`;
 
 const Container = styled.div`
   display: flex;

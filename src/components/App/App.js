@@ -11,6 +11,7 @@ import Login_Page from '../Login_Page/LoginPage';
 import Sign_up_Page from '../Sign-up_Page/RegisterPage';
 import Subscriptions_Page from '../subscriptions_Page/Subscriptions_Page';
 import Plan_Page from '../Plan_Page/Plan_Page';
+import Home_Page from '../Home_Page/Home_Page';
 
 //import pages
 
@@ -22,7 +23,14 @@ export default function App() {
 
   const [objBuyPlanResponse, setObjBuyPlanResponse] = useState({});
   //guarda a resposta de compra
-
+  //guarda os dados do cartão
+  const [objDataCardCredit, setObjDataCardCredit] = useState({
+    membershipId: 1,
+    cardName: '',
+    cardNumber: '',
+    securityNumber: 0,
+    expirationDate: ''
+  });
   return (
     <UserContext.Provider
       value={{
@@ -31,7 +39,9 @@ export default function App() {
         objBuyPlanResponse,
         setObjBuyPlanResponse,
         objDescriptionPlan,
-        setObjDescriptionPlan
+        setObjDescriptionPlan,
+        objDataCardCredit,
+        setObjDataCardCredit
       }}
     >
       <BrowserRouter>
@@ -40,6 +50,7 @@ export default function App() {
           <Route path="/sign_up" element={<Sign_up_Page />} />
           <Route path="/subscriptions" element={<Subscriptions_Page />} />
           <Route path="/subscriptions/:idPlan" element={<Plan_Page />} />
+          <Route path="/home" element={<Home_Page />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

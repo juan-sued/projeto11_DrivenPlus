@@ -1,41 +1,19 @@
 import styled from 'styled-components';
-import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ThreeDots } from 'react-loader-spinner';
+import { useState } from 'react';
 
-import axios from 'axios';
+import { useContext } from 'react';
+import UserContext from '../../contexts/UserContext';
 
-import UserContext from '../../contexts/UserContext.js';
-//import context
 export default function InputsBuyer({ toggleConfirmCard, keyToggleCardView }) {
-  const { objLoginResponse } = useContext(UserContext);
-  const { setObjBuyPlanResponse } = useContext(UserContext);
-  const URL = 'https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions';
-  const [stateButton, setStateButton] = useState('habilitado');
   const [inputCardName, setInputCardName] = useState('');
   const [inputCardNumber, setInputCardNumber] = useState('');
   const [inputSecurityNumber, setInputSecurityNumber] = useState('');
   const [inputExpirationDate, setInputExpirationDate] = useState('');
+  const { objDataCardCredit, setObjDataCardCredit } = useContext(UserContext);
 
-  const navigate = useNavigate();
-  const [objDataCardCredit, setObjDataCardCredit] = useState({
-    membershipId: 1,
-    cardName: '',
-    cardNumber: '',
-    securityNumber: 0,
-    expirationDate: ''
-  });
-
-  function buyPlan(event) {
+  function confirmPlan(event) {
     event.preventDefault();
 
-    // headerToken
-    const config = {
-      headers: {
-        Authorization: `Bearer ${objLoginResponse.token}`
-      }
-    };
-    setStateButton('loading');
     // ===
     objDataCardCredit.cardName = inputCardName;
     objDataCardCredit.cardNumber = inputCardNumber;
@@ -44,29 +22,16 @@ export default function InputsBuyer({ toggleConfirmCard, keyToggleCardView }) {
     // ===
 
     setObjDataCardCredit({ ...objDataCardCredit });
-
-    const promise = axios.post(URL, objDataCardCredit, config);
-
-    promise.then(promise => {
-      setObjBuyPlanResponse(promise.data);
-      console.log(promise.data);
-      navigate('../subscriptions', { replace: true });
-    });
-    promise.catch(err => {
-      setStateButton('err');
-    });
+    toggleConfirmCard();
     setInputCardName('');
     setInputCardNumber('');
     setInputSecurityNumber('');
     setInputExpirationDate('');
   }
 
-  if (stateButton === 'err' && inputCardName.length > 0) {
-    setStateButton('habilitado');
-  }
   return (
     <ContainerFormClass>
-      <form onSubmit={buyPlan}>
+      <form onSubmit={confirmPlan}>
         <InputClass
           placeholder="Nome impresso no cartão"
           type="text"
@@ -74,7 +39,6 @@ export default function InputsBuyer({ toggleConfirmCard, keyToggleCardView }) {
           value={inputCardName}
           onChange={e => setInputCardName(e.target.value)}
           required
-          disabled={stateButton === 'loading' ? 'disabled' : ''}
         />
         <InputClass
           placeholder="Dígitos do cartão"
@@ -83,7 +47,6 @@ export default function InputsBuyer({ toggleConfirmCard, keyToggleCardView }) {
           value={inputCardNumber}
           onChange={e => setInputCardNumber(e.target.value)}
           required
-          disabled={stateButton === 'loading' ? 'disabled' : ''}
         />
         <span className="container">
           <InputClass
@@ -93,7 +56,6 @@ export default function InputsBuyer({ toggleConfirmCard, keyToggleCardView }) {
             value={inputSecurityNumber}
             onChange={e => setInputSecurityNumber(e.target.value)}
             required
-            disabled={stateButton === 'loading' ? 'disabled' : ''}
           />
           <InputClass
             placeholder="Validade"
@@ -102,30 +64,10 @@ export default function InputsBuyer({ toggleConfirmCard, keyToggleCardView }) {
             value={inputExpirationDate}
             onChange={e => setInputExpirationDate(e.target.value)}
             required
-            disabled={stateButton === 'loading' ? 'disabled' : ''}
           />
         </span>
-        <BuyPlanButton
-          fontsize={stateButton === 'err' ? '15px' : '14px'}
-          backgroundcolor={
-            stateButton === 'err'
-              ? '#d4d4d4'
-              : stateButton === 'loading'
-              ? '#ff7169'
-              : '#FF4791'
-          }
-          type="submit"
-          disabled={stateButton === 'loading' ? 'disabled' : ''}
-        >
-          {stateButton === 'err' ? (
-            'Dado(s) inválido(s)!'
-          ) : stateButton === 'loading' ? (
-            <ContainerLoading>
-              <ThreeDots color="white" height={40} width={40} />
-            </ContainerLoading>
-          ) : (
-            'ASSINAR'
-          )}
+        <BuyPlanButton fontsize={'14px'} backgroundcolor={'#FF4791'} type="submit">
+          ASSINAR
         </BuyPlanButton>
       </form>
     </ContainerFormClass>
