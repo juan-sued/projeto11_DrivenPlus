@@ -1,6 +1,3 @@
-import styled from 'styled-components';
-// import css
-
 import { Link } from 'react-router-dom';
 //import react
 

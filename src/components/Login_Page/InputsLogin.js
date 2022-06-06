@@ -13,7 +13,7 @@ import axios from 'axios';
 export default function InputsLogin() {
   const URL = 'https://mock-api.driven.com.br/api/v4/driven-plus/auth/login';
 
-  const { setObjLoginResponse } = useContext(UserContext);
+  const { setObjLoginResponse, setFistLogin } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -41,8 +41,10 @@ export default function InputsLogin() {
       setObjLoginResponse(promise.data);
 
       if (promise.data.membership) {
+        setFistLogin(true);
         navigate('../home', { replace: true });
       } else {
+        setFistLogin(false);
         navigate('../subscriptions', { replace: true });
       }
     });

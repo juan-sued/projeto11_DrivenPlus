@@ -1,7 +1,7 @@
 import Header from '../../shared/Header';
 import Main from '../../shared/Main';
 import profileIcon from '../../assets/profileIcon.svg';
-import logoCardLow from '../../assets/logoCardLow.svg';
+
 import ButtonPink from '../../shared/ButtonPink';
 import styled from 'styled-components';
 import UserContext from '../../contexts/UserContext';
@@ -13,7 +13,7 @@ import ButtonsPerks from './ButtonsPerks';
 import axios from 'axios';
 export default function Home_Page() {
   const navigate = useNavigate();
-  const { objLoginResponse } = useContext(UserContext);
+  const { objLoginResponse, fistLogin, objDescriptionPlan } = useContext(UserContext);
   const URL = 'https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions';
   // headerToken
   const config = {
@@ -31,19 +31,29 @@ export default function Home_Page() {
       promise.catch(err => console.log(err));
     } else if (change === 'changePlan') {
       navigate('../subscriptions', { replace: true });
-      console.log('você apertou para trocar de plano');
     }
   }
+
+  console.log('esse é o obj', objLoginResponse);
+  console.log('esse é o objDescription', objDescriptionPlan);
+  console.log('esse é o first login', fistLogin);
   return (
     <>
       <Header>
-        <img src={objLoginResponse.membership.image} alt="" />
+        <img
+          src={fistLogin ? objLoginResponse.membership.image : objDescriptionPlan.image}
+          alt=""
+        />
 
         <img src={profileIcon} alt="" />
       </Header>
       <Main>
         <H1>Olá, {objLoginResponse.name}</H1>
-        <ButtonsPerks objLoginResponse={objLoginResponse} />
+        <ButtonsPerks
+          objDescriptionPlan={objDescriptionPlan}
+          fistLogin={fistLogin}
+          objLoginResponse={objLoginResponse}
+        />
       </Main>
       <Footer>
         <ButtonPink backgroundcolor={'#FF4791'} onClick={() => action('changePlan')}>

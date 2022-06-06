@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext } from 'react';
 import axios from 'axios';
 
 import UserContext from '../../contexts/UserContext';

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import axios from 'axios';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../../contexts/UserContext.js';
 import closeIcon from '../../assets/closeIcon.svg';
@@ -41,7 +41,6 @@ export default function ModalConfirm({ keyToggleCardView, toggleConfirmCard }) {
     });
   }
 
-  console.log('aqui agora', objPerksPlan);
   return (
     <>
       {objPerksPlan === null ? (

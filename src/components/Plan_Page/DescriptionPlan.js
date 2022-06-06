@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import peaksIcon from '../../assets/peakIcon.svg';
 import dolarIcon from '../../assets/dolarIcon.svg';
 import UserContext from '../../contexts/UserContext';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import axios from 'axios';
