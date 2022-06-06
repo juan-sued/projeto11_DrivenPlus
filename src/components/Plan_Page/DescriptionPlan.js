@@ -29,7 +29,7 @@ export default function DescriptionPlan() {
       setObjDescriptionPlan(response.data);
       setObjPerksPlan(response.data.perks);
     });
-    promise.catch(err => console.log(err));
+    promise.catch(err => alert('erro ao processar'));
   }, []);
 
   return (

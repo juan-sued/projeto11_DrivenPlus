@@ -28,7 +28,7 @@ export default function CardsPlan() {
     promise.then(response => {
       setObjCardsPlanList(response.data);
     });
-    promise.catch(err => console.log(err));
+    promise.catch(err => alert('erro ao processar'));
   }, []);
 
   return (

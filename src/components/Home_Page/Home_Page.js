@@ -28,15 +28,12 @@ export default function Home_Page() {
       promise.then(response => {
         navigate('../subscriptions', { replace: true });
       });
-      promise.catch(err => console.log(err));
+      promise.catch(err => alert('erro ao processar'));
     } else if (change === 'changePlan') {
       navigate('../subscriptions', { replace: true });
     }
   }
 
-  console.log('esse é o obj', objLoginResponse);
-  console.log('esse é o objDescription', objDescriptionPlan);
-  console.log('esse é o first login', fistLogin);
   return (
     <>
       <Header>
