@@ -83,12 +83,12 @@ const ContainerFormClass = styled.div`
   width: 100%;
 
   form {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     height: 240px;
+    margin-top: -10px;
 
     .container {
       display: flex;

@@ -71,7 +71,8 @@ const Container = styled.div`
   margin-top: 12px;
   color: white;
   padding: 0 22px 0 0px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+
   p {
     margin-top: 4px;
     font-size: 14px;
@@ -94,5 +95,8 @@ const Container = styled.div`
     align-items: start;
     justify-content: space-around;
     line-height: 16px;
+    li {
+      margin-bottom: 2px;
+    }
   }
 `;

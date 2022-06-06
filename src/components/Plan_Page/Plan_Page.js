@@ -65,7 +65,7 @@ const Container = styled.div`
     font-style: normal;
     font-weight: 700;
     font-size: 32px;
-    line-height: 38px;
+    line-height: 30px;
     color: #ffffff;
     position: relative;
     bottom: 30px;
