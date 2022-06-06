@@ -8,12 +8,15 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../../shared/Loading';
 export default function DescriptionPlan() {
-  const { objLoginResponse } = useContext(UserContext);
-
   const { idPlan } = useParams();
 
-  const { objDescriptionPlan, setObjDescriptionPlan, objPerksPlan, setObjPerksPlan } =
-    useContext(UserContext);
+  const {
+    objLoginResponse,
+    objDescriptionPlan,
+    setObjDescriptionPlan,
+    objPerksPlan,
+    setObjPerksPlan
+  } = useContext(UserContext);
 
   useEffect(() => {
     const URL = `https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships/${idPlan}`;
@@ -27,6 +30,7 @@ export default function DescriptionPlan() {
     const promise = axios.get(URL, config);
     promise.then(response => {
       setObjDescriptionPlan(response.data);
+
       setObjPerksPlan(response.data.perks);
     });
     promise.catch(err => alert('erro ao processar'));

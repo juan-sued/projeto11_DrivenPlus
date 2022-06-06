@@ -35,7 +35,7 @@ export default function App() {
   const [objCardsPlanList, setObjCardsPlanList] = useState(null);
   const [objPerksPlan, setObjPerksPlan] = useState(null);
 
-  const [fistLogin, setFistLogin] = useState(null);
+  const [planData, setPlanData] = useState(null);
 
   return (
     <UserContext.Provider
@@ -52,8 +52,8 @@ export default function App() {
         setObjCardsPlanList,
         objPerksPlan,
         setObjPerksPlan,
-        fistLogin,
-        setFistLogin
+        planData,
+        setPlanData
       }}
     >
       <BrowserRouter>

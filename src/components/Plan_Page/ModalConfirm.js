@@ -12,7 +12,8 @@ export default function ModalConfirm({ keyToggleCardView, toggleConfirmCard }) {
     objDataCardCredit,
     objLoginResponse,
     objPerksPlan,
-    objDescriptionPlan
+    objDescriptionPlan,
+    setPlanData
   } = useContext(UserContext);
 
   const URL = 'https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions';
@@ -33,6 +34,8 @@ export default function ModalConfirm({ keyToggleCardView, toggleConfirmCard }) {
 
     promise.then(promise => {
       setObjBuyPlanResponse(promise.data);
+
+      setPlanData(promise.data.membership);
 
       navigate('../home', { replace: true });
     });

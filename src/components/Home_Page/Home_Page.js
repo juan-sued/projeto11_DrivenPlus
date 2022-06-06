@@ -11,9 +11,10 @@ import { useNavigate } from 'react-router-dom';
 import Footer from '../../shared/Footer';
 import ButtonsPerks from './ButtonsPerks';
 import axios from 'axios';
+import Loading from '../../shared/Loading';
 export default function Home_Page() {
   const navigate = useNavigate();
-  const { objLoginResponse, fistLogin, objDescriptionPlan } = useContext(UserContext);
+  const { objLoginResponse, planData } = useContext(UserContext);
   const URL = 'https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions';
   // headerToken
   const config = {
@@ -36,30 +37,29 @@ export default function Home_Page() {
 
   return (
     <>
-      <Header>
-        <img
-          src={fistLogin ? objLoginResponse.membership.image : objDescriptionPlan.image}
-          alt=""
-        />
+      {planData === null ? (
+        <Loading />
+      ) : (
+        <>
+          <Header>
+            <img src={planData.image} alt="" />
 
-        <img src={profileIcon} alt="" />
-      </Header>
-      <Main>
-        <H1>Olá, {objLoginResponse.name}</H1>
-        <ButtonsPerks
-          objDescriptionPlan={objDescriptionPlan}
-          fistLogin={fistLogin}
-          objLoginResponse={objLoginResponse}
-        />
-      </Main>
-      <Footer>
-        <ButtonPink backgroundcolor={'#FF4791'} onClick={() => action('changePlan')}>
-          Mudar plano
-        </ButtonPink>
-        <ButtonPink backgroundcolor={'#FF4747'} onClick={() => action('cancelPlan')}>
-          Cancelar plano
-        </ButtonPink>
-      </Footer>
+            <img src={profileIcon} alt="" />
+          </Header>
+          <Main>
+            <H1>Olá, {objLoginResponse.name}</H1>
+            <ButtonsPerks planData={planData} />
+          </Main>
+          <Footer>
+            <ButtonPink backgroundcolor={'#FF4791'} onClick={() => action('changePlan')}>
+              Mudar plano
+            </ButtonPink>
+            <ButtonPink backgroundcolor={'#FF4747'} onClick={() => action('cancelPlan')}>
+              Cancelar plano
+            </ButtonPink>
+          </Footer>
+        </>
+      )}
     </>
   );
 }
